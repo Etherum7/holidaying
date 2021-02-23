@@ -1,9 +1,5 @@
-interface IDataRestaurant {
-  imageUrl: string;
-  rating: string;
-  description: string;
-  name: string;
-}
+import {IDataRestaurant} from '@projecttypes/restaurant';
+
 const searchDataForsubString = (
   data: IDataRestaurant[],
   searchterm: string

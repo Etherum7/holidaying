@@ -1,16 +1,22 @@
 import React, { useState } from "react";
-
 import axios from "axios";
 
 import styles from "./Search.module.scss";
-const Search = () => {
+
+import { IDataRestaurant } from "@projecttypes/restaurant";
+
+interface ISearchProps {
+  handleSearchData: (data: IDataRestaurant[]) => void;
+}
+const Search = ({ handleSearchData }: ISearchProps) => {
   const [inputValue, setInputValue] = useState("");
-  const [data, setData] = useState();
   const handleChange = async (searchTerm: string) => {
     const res = await axios.get(
       `/api/restaurants?searchTerm=${searchTerm}`
     );
-    setData(res.data);
+    console.log(res.data);
+    //as we name it under data
+    handleSearchData(res.data.data);
   };
   return (
     <div className={styles.searchContainer}>

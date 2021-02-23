@@ -8,7 +8,8 @@
       "@module/*": ["components/modules/*"],
       "@template/*": ["components/templates/*"],
       "@config/*": ["config/*"],
-      "@util/*": ["util/*"]
+      "@util/*": ["util/*"],
+      "@projecttypes/*": ["projecttypes/*"]
       //"@constant/*": ["constants/*"],
       // "@context/*": ["context/*"],
       // "@hook/*": ["hooks/*"],
