@@ -1,0 +1,25 @@
+@import "main.scss";
+.header {
+  display: flex;
+  align-items: center;
+  justify-content:space-between;
+}
+
+.logoContainer {
+}
+
+.logo {
+    height:4rem;
+    width:auto;
+}
+.userActionContainer{
+    display: flex;
+    flex: 0 1 10%;
+    justify-content:space-between;
+    font-size: 1.6rem;
+    text-transform:uppercase;
+}
+
+
+
+

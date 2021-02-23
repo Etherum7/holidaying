@@ -1,6 +1,7 @@
+import Search from "@module/Search/Search.module";
 import Head from "next/head";
 import React from "react";
-import styles from "../styles/Home.module.css";
+import styles from "../styles/Home.module.scss";
 
 const Home: React.FC = () => {
   return (
@@ -11,10 +12,12 @@ const Home: React.FC = () => {
           by influencers and locals
         </title>
         <link rel="icon" href="/favicon.ico" />
+        // Add this wherever you render your code...
       </Head>
 
       <main className={styles.main}>
         <h1 className={styles.title}>Holidaying</h1>
+        <Search />
       </main>
 
       <footer className={styles.footer}>

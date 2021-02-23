@@ -1,0 +1,25 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  //applies to all elements
+  box-sizing: inherit; // elements do not inherit from *
+  //it will inherit from body
+}
+html {
+  font-size: 62.5%; //for rem to be 10px
+}
+body {
+   
+  margin: 0;
+  padding: 3rem;
+  box-sizing: border-box;
+
+  font-family: Roboto sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
