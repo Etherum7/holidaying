@@ -40,9 +40,15 @@
 .cardName {
   font-family: cursive;
   font-size: 2rem;
+  @include respond(phone) {
+    font-family: auto;
+  }
 }
 .cardRating {
   font-family: cursive;
+  @include respond(phone) {
+    font-family: auto;
+  }
   font-size: 2rem;
   margin-left: 1rem;
   color: gold;

@@ -31,11 +31,13 @@
   border-radius: 3rem;
   font-size: 2.5rem;
   font-family: cursive;
+
   color: $color-primary-dark;
   transition: transform 0.5s, width 0.5s;
   border: 2px solid transparent;
   @include respond(phone){
     width:95%;
+    font-family: auto;
   }
   &:hover {
     border: 2px solid $color-primary;

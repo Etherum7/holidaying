@@ -8,7 +8,7 @@ const searchDataForsubString = (
     restaurant.name
       .toLowerCase()
       .replace(/\s/g, "")
-      .includes(searchTerm)
+      .includes(searchTerm.toLowerCase())
   );
   return finalData;
 };
