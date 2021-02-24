@@ -58,7 +58,11 @@ const Search = ({
   return (
     <div
       className={`${styles.searchContainer} ${styles.animated} ${styles.bounceInUp}`}>
+      <label htmlFor="search" style={{ display: 'none' }}>
+        search all restaurants
+      </label>
       <input
+        id="search"
         type="text"
         name="search"
         value={inputValue}
@@ -80,6 +84,7 @@ const Search = ({
         placeholder="Search Your Favourite Restaurants..."
       />
       <button
+        aria-label="Search Restaurants"
         className={styles.searchButton}
         onClick={() => {
           inputRef.current.focus();

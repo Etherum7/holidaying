@@ -11,7 +11,7 @@
 
 .logo {
   height: 4rem;
-  width: auto;
+  width: 4rem;
 }
 .userActionContainer {
   display: flex;
@@ -19,6 +19,13 @@
   justify-content: space-between;
   font-size: 1.6rem;
   text-transform: uppercase;
+  @include respond(tab-port) {
+    flex: 0 1 20%;
+  }
+  @include respond(phone) {
+    flex: 0 1 30%;
+    font-size: 1.4rem;
+  }
 }
 .userLink {
   transition: all 0.2s;
@@ -29,8 +36,7 @@
 
     transform: translateY(-5px);
   }
-  &:focus{
+  &:focus {
     transform: translateY(5px);
-
   }
 }

@@ -16,6 +16,10 @@
   width: 80%;
   justify-content: center;
   margin-top: 4rem;
+
+  @include respond(phone){
+    width:100%;
+  }
 }
 
 .searchBox {
@@ -30,6 +34,9 @@
   color: $color-primary-dark;
   transition: transform 0.5s, width 0.5s;
   border: 2px solid transparent;
+  @include respond(phone){
+    width:95%;
+  }
   &:hover {
     border: 2px solid $color-primary;
   }
@@ -39,9 +46,17 @@
     transform: translateY(-15rem);
 
     width: 78%;
+    @include respond(phone){
+      transform: translateY(-10rem);
+      width:100%;
+    }
   }
   &:focus ~ .searchButton {
     transform: translateY(-15rem);
+    @include respond(phone){
+      transform: translateY(-10rem);
+    
+    }
   }
   box-shadow: 0rem 1rem 2rem rgba(0, 0, 0, 0.5);
   caret-color: $color-primary;

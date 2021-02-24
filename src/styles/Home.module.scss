@@ -3,6 +3,9 @@
   min-height: 100vh;
   display: flex;
   justify-content: center;
+  @include respond(tab-port) {
+    overflow: hidden;
+  }
 }
 
 .main {
@@ -20,6 +23,92 @@
   font-weight: 500;
   letter-spacing: 0.3rem;
   // text-align: center;
+  @include respond(phone) {
+    font-weight: 700;
+    font-size: 1.3rem;
+    letter-spacing: 0;
+    padding-top: 1rem;
+  }
+}
+
+.siteDescription {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 70vw;
+}
+
+.hideSiteDesc {
+  display: none;
+}
+.siteDescriptionHeader {
+  margin: 3rem 0;
+  font-size: 3rem;
+  font-weight: 100;
+  text-transform: uppercase;
+  letter-spacing: 0.25rem;
+  font-family: cursive;
+  @include respond(phone) {
+    margin: 1.5rem 0;
+    font-size: 2rem;
+    letter-spacing: 0;
+    text-align: center;
+    line-height: 1.1;
+  }
+}
+.msgNoData{
+  text-align: center;
+}
+.techList {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  @include respond(phone) {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+.techUse {
+  opacity: 0;
+  transition: all 0.2s;
+  transform: translateY(-2rem);
+  font-size: 1.6rem;
+  text-align: center;
+  text-transform: capitalize;
+  @include respond(phone) {
+   display:none;
+  }
+}
+.techListItem {
+  flex: 0 1 10rem;
+  &:not(:last-child) {
+    padding-right: 1rem;
+  }
+  &:nth-child(5) {
+    flex: 0 1 7rem;
+  }
+  @include respond(phone) {
+    
+    
+      padding-right: 0;
+      padding-bottom: 1rem;
+  
+    &:nth-child(5) {
+     
+    }
+  }
+}
+
+.techImg {
+  width: auto;
+  height: 10rem;
+}
+.techImg:hover + .techUse {
+  opacity: 1;
+  transform: translateY(1rem);
 }
 .slideInUp {
   -webkit-animation-name: slideInUp;
@@ -35,6 +124,12 @@
   text-transform: uppercase;
   font-family: cursive;
   font-size: 3rem;
+
+  @include respond(phone) {
+    margin-top: 2rem;
+    font-size: 2.5rem;
+    text-align: center;
+  }
 }
 
 .animatedBounceInLeft {
@@ -58,6 +153,11 @@
   font-size: 8rem;
   font-weight: 300;
   letter-spacing: 1rem;
+
+  @include respond(phone) {
+    font-size: 4rem;
+    letter-spacing: 0.5rem;
+  }
 }
 
 .bounceInRight {

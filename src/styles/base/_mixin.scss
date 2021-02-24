@@ -1,0 +1,37 @@
+//Media Query Manager
+//Max-width
+//600px phone
+/*900px tablet portrait
+  1200px tablet-landscape
+  1800px normal
+  1800+ big desktop
+*/
+// Base + Typography >  General Layout and Grid > page layout > Componnents
+@mixin respond($breakpoint) {
+    @if $breakpoint == phone {
+      @media only screen and (max-width: 37.5em) {
+        //< 600px
+        @content;
+      }
+    }
+    @if $breakpoint == tab-port {
+      @media only screen and  (max-width: 56.25em) {
+        //< 900px
+        @content;
+      }
+    }
+    @if $breakpoint == tab-land {
+      @media  only screen and (max-width: 75em) {
+        // <1200px
+        @content;
+      }
+    }
+  
+    @if $breakpoint == big-desktop {
+      @media only screen and  (min-width: 112.5em) {
+        //em works better than rem
+        @content; // include code - block // > 1800px
+      }
+    }
+  }
+  
