@@ -1,7 +1,7 @@
 import React from "react";
 
 import { IDataRestaurant } from "@projecttypes/restaurant";
-import styles from "./card.module.scss";
+import styles from "./Card.module.scss";
 interface ICardProps {
   restaurant: IDataRestaurant;
 }
