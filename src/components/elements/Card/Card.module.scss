@@ -1,0 +1,65 @@
+@import "main.scss";
+.cardContainer {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 25rem;
+  padding: 2rem;
+
+  background-color: #000000;
+  background-image: linear-gradient(
+    315deg,
+    #000000 0%,
+    #414141 74%
+  );
+
+  color: $color-grey-light-1;
+  border-radius: 2rem;
+
+  cursor: pointer;
+  transition: all ease-out 0.3s;
+  &:not(:last-child) {
+    margin-right: 1rem;
+  }
+  &:hover {
+    transform: scale(1.3);
+    z-index:10;
+    box-shadow: 0 4rem 2rem rgba(0, 0, 0, 0.4);
+  }
+
+  div:not(:last-child) {
+    margin-bottom: 1rem;
+  }
+  box-shadow: 0 2rem 2rem rgba(0, 0, 0, 0.4);
+}
+
+.cardNameAndRating {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.cardName {
+  font-family: cursive;
+  font-size: 2rem;
+}
+.cardRating {
+  font-family: cursive;
+  font-size: 2rem;
+  margin-left: 1rem;
+  color: gold;
+}
+
+.cardDesc {
+  font-size: 1.6rem;
+  padding-top: 1rem;
+}
+.cardImgContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cardImg {
+  height: 10rem;
+  width: auto;
+  border-radius: 2rem;
+}

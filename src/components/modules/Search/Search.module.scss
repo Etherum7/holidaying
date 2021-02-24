@@ -1,1 +1,77 @@
-@import 'main.scss';
+@import "main.scss";
+.bounceInUp {
+  -webkit-animation-name: bounceInUp;
+  animation-name: bounceInUp;
+  animation-delay: 0.5s;
+}
+
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+.searchContainer {
+  display: flex;
+  width: 80%;
+  justify-content: center;
+  margin-top: 4rem;
+}
+
+.searchBox {
+  width: 60%;
+  border: none;
+  margin-left: -0.5rem;
+  margin-right: -3.5rem;
+  padding: 1rem 2rem;
+  border-radius: 3rem;
+  font-size: 2.5rem;
+  font-family: cursive;
+  color: $color-primary-dark;
+  transition: transform 0.5s, width 0.5s;
+  border: 2px solid transparent;
+  &:hover {
+    border: 2px solid $color-primary;
+  }
+  border-radius: 3rem;
+  &:focus {
+    outline: none;
+    transform: translateY(-15rem);
+
+    width: 78%;
+  }
+  &:focus ~ .searchButton {
+    transform: translateY(-15rem);
+  }
+  box-shadow: 0rem 1rem 2rem rgba(0, 0, 0, 0.5);
+  caret-color: $color-primary;
+
+  &::-webkit-input-placeholder {
+    color: $color-grey-dark-2;
+    text-transform: capitalize;
+    font-size: 2rem;
+    margin-right: 0.5rem;
+    margin-top: 0.5rem;
+  }
+}
+
+.searchButton {
+  outline: none;
+  border: none;
+  background-color: transparent;
+  transition: transform 0.5s;
+
+  &:hover {
+    transform: rotate(360deg);
+    .searchIcon {
+      fill: $color-primary;
+    }
+  }
+}
+
+.searchIcon {
+  width: 3rem;
+  height: 3rem;
+
+  fill: $color-grey-dark-2;
+}

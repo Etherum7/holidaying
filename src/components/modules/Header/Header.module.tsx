@@ -20,10 +20,10 @@ const Header = () => {
       </div>
       <div className={styles.userActionContainer}>
           <Link href="/signin">
-            <a>log in</a>
+            <a className={styles.userLink}>log in</a>
           </Link>
           <Link href="/signup">
-            <a>sign up</a>
+            <a className={styles.userLink}>sign up</a>
           </Link>
         </div>
     </header>

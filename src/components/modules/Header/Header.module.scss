@@ -2,24 +2,35 @@
 .header {
   display: flex;
   align-items: center;
-  justify-content:space-between;
+  justify-content: space-between;
+  font-family: cursive;
 }
 
 .logoContainer {
 }
 
 .logo {
-    height:4rem;
-    width:auto;
+  height: 4rem;
+  width: auto;
 }
-.userActionContainer{
-    display: flex;
-    flex: 0 1 10%;
-    justify-content:space-between;
-    font-size: 1.6rem;
-    text-transform:uppercase;
+.userActionContainer {
+  display: flex;
+  flex: 0 1 10%;
+  justify-content: space-between;
+  font-size: 1.6rem;
+  text-transform: uppercase;
 }
+.userLink {
+  transition: all 0.2s;
 
+  display: block;
+  &:hover {
+    color: #fff;
 
+    transform: translateY(-5px);
+  }
+  &:focus{
+    transform: translateY(5px);
 
-
+  }
+}

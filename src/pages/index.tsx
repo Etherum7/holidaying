@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import { GetStaticProps } from "next";
 
-import axios from "axios";
 import firebase from "@config/firebase";
 
 import Search from "@module/Search/Search.module";
-import CardContainer from "@module/CardContainer/CardContainer.module";
+import CardList from "@module/CardList/CardList.module";
+import Loader from "components/Loader/Loader.element";
 
 import styles from "../styles/Home.module.scss";
 
@@ -19,7 +19,9 @@ interface IHomeProps {
 }
 const Home: React.FC<IHomeProps> = ({ topRestaurants }) => {
   const [data, setData] = useState<IDataRestaurant[]>([]);
-
+  const [inputFocused, setInputFoused] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
   useEffect(() => {
     setData(topRestaurants);
   }, []);
@@ -35,28 +37,88 @@ const Home: React.FC<IHomeProps> = ({ topRestaurants }) => {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>Holidaying</h1>
+        <h1
+          className={
+            inputFocused
+              ? `${styles.title} ${styles.animated} ${styles.bounceOutRight} `
+              : `${styles.title} ${styles.animatedBounceInLeft} `
+          }>
+          Holidaying
+        </h1>
+        <h4
+          className={
+            inputFocused
+              ? `${styles.subTitle} ${styles.animated} ${styles.bounceOutLeft}`
+              : `${styles.subTitle} ${styles.animated} ${styles.bounceInRight}`
+          }>
+          Jobs fill your pockets, adventures fill your soul.
+        </h4>
         <Search
+          handleSearchTerm={(searchTerm: string) =>
+            setSearchTerm(searchTerm)
+          }
           handleSearchData={(searchData) =>
             setData(searchData)
           }
+          handleLoadingState={(loadingState) => {
+            setLoading(loadingState);
+          }}
+          inputFocused={(value) => {
+            setInputFoused(value);
+          }}
         />
-        <CardContainer data={data} />
-      </main>
 
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer">
-          Powered by{" "}
-          <img
-            src="/vercel.svg"
-            alt="Vercel Logo"
-            className={styles.logo}
-          />
-        </a>
-      </footer>
+        {loading ? (
+          <Loader />
+        ) : (
+          <>
+            {inputFocused ? (
+              <h1
+                className={`${styles.topRestaurants} ${styles.animated} ${styles.slideInUp}`}>
+                {searchTerm === "" ? (
+                  <>
+                    Our Top Restaurants{" "}
+                    <span
+                      className={styles.emojiSavourFood}>
+                      &#x1F60b;
+                    </span>
+                  </>
+                ) : (
+                  <>
+                    Restaurants which have "{searchTerm}" in
+                    name{" "}
+                    <span
+                      className={styles.emojiSavourFood}>
+                      {data.length === 0 ? (
+                        <>&#x1F614;</>
+                      ) : (
+                        <>&#x1F60b;</>
+                      )}
+                    </span>
+                  </>
+                )}
+              </h1>
+            ) : (
+              ""
+            )}
+            {inputFocused ? (
+              <>
+                {data.length !== 0 ? (
+                  <CardList data={data} />
+                ) : (
+                  <h1 className={styles.msgNoData}>
+                    Sorry No Restaurant Found in our small
+                    database of 10 restaurants . But we are
+                    scaling it up Do come back later
+                  </h1>
+                )}
+              </>
+            ) : (
+              ""
+            )}{" "}
+          </>
+        )}
+      </main>
     </div>
   );
 };

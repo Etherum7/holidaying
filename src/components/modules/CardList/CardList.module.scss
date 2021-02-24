@@ -1,0 +1,15 @@
+@import "main.scss";
+
+.cardList {
+  display: flex;
+  width: 90vw;
+  justify-content: center;
+  flex-wrap: wrap;
+  row-gap: 2rem;
+  margin-top: -5.5rem;
+  // overflow-x:hidden;
+  //  overflow-y: auto;
+  &:hover >div:not(:hover) {
+    transform: scale(0.95);
+  }
+}
