@@ -58,7 +58,7 @@
     line-height: 1.1;
   }
 }
-.msgNoData{
+.msgNoData {
   text-align: center;
 }
 .techList {
@@ -79,7 +79,7 @@
   text-align: center;
   text-transform: capitalize;
   @include respond(phone) {
-   display:none;
+    display: none;
   }
 }
 .techListItem {
@@ -91,14 +91,8 @@
     flex: 0 1 7rem;
   }
   @include respond(phone) {
-    
-    
-      padding-right: 0;
-      padding-bottom: 1rem;
-  
-    &:nth-child(5) {
-     
-    }
+    padding-right: 0;
+    padding-bottom: 1rem;
   }
 }
 

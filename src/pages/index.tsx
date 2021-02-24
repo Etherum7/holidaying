@@ -83,6 +83,7 @@ const Home: React.FC<IHomeProps> = ({ topRestaurants }) => {
               <img
                 src="/assets/react.png"
                 className={styles.techImg}
+                alt="ReactLogo"
               />
               <div className={styles.techUse}>
                 For UI Library
@@ -92,6 +93,7 @@ const Home: React.FC<IHomeProps> = ({ topRestaurants }) => {
               <img
                 src="/assets/next.png"
                 className={styles.techImg}
+                alt="NextLogo"
               />
               <div className={styles.techUse}>
                 used as Framework
@@ -101,6 +103,7 @@ const Home: React.FC<IHomeProps> = ({ topRestaurants }) => {
               <img
                 src="/assets/typescript.png"
                 className={styles.techImg}
+                alt="TSLogo"
               />
               <div className={styles.techUse}>
                 used as Language
@@ -110,6 +113,7 @@ const Home: React.FC<IHomeProps> = ({ topRestaurants }) => {
               <img
                 src="/assets/sass.png"
                 className={styles.techImg}
+                alt="SassLogo"
               />
               <div className={styles.techUse}>
                 used as CSS Preprocessor
@@ -120,6 +124,7 @@ const Home: React.FC<IHomeProps> = ({ topRestaurants }) => {
               <img
                 src="/assets/firebase.png"
                 className={styles.techImg}
+                alt="FIREBASELogo"
               />
               <div className={styles.techUse}>
                 used as Database
@@ -129,6 +134,7 @@ const Home: React.FC<IHomeProps> = ({ topRestaurants }) => {
               <img
                 src="/assets/github.png"
                 className={styles.techImg}
+                alt="GITHUBLogo"
               />
               <div className={styles.techUse}>
                 used for VC and RM
@@ -138,6 +144,7 @@ const Home: React.FC<IHomeProps> = ({ topRestaurants }) => {
               <img
                 src="/assets/vercel.png"
                 className={styles.techImg}
+                alt="VercelLogo"
               />
               <div className={styles.techUse}>
                 used for Deployment
