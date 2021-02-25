@@ -1,6 +1,5 @@
 import React, { useState, useRef } from "react";
 import axios from "axios";
-import firebase from "@config/firebase";
 import styles from "./Search.module.scss";
 
 import { IDataRestaurant } from "@projecttypes/restaurant";
