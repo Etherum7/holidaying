@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './TechList.module.scss';
+import styles from './Techlist.module.scss';
 
 interface ITechListProps{
     inputFocused:boolean;
