@@ -6,7 +6,8 @@ import firebase from "@config/firebase";
 
 import Search from "@module/Search/Search.module";
 import CardList from "@module/CardList/CardList.module";
-import Loader from "components/Loader/Loader.element";
+import Loader from "@element/Loader/Loader.element";
+import TechList from "@module/TechList/TechList.module";
 
 import styles from "../styles/Home.module.scss";
 
@@ -18,12 +19,15 @@ interface IHomeProps {
   topRestaurants: IDataRestaurant[];
 }
 const Home: React.FC<IHomeProps> = ({ topRestaurants }) => {
+  const [top4Restaurants, setTop4Restaurants] = useState<
+    IDataRestaurant[]
+  >();
   const [data, setData] = useState<IDataRestaurant[]>([]);
   const [inputFocused, setInputFoused] = useState(false);
   const [loading, setLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   useEffect(() => {
-    setData(topRestaurants);
+    setTop4Restaurants(topRestaurants);
   }, []);
   return (
     <div className={styles.container}>
@@ -66,92 +70,9 @@ const Home: React.FC<IHomeProps> = ({ topRestaurants }) => {
           inputFocused={(value) => {
             setInputFoused(value);
           }}
+          top4Restaurants={top4Restaurants}
         />
-
-        <div
-          className={
-            inputFocused
-              ? `${styles.siteDescription} ${styles.hideSiteDesc}`
-              : `${styles.siteDescription}`
-          }>
-          <h3 className={styles.siteDescriptionHeader}>
-            {" "}
-            This site uses following technologies
-          </h3>
-          <ul className={styles.techList}>
-            <li className={styles.techListItem}>
-              <img
-                src="/assets/react.png"
-                className={styles.techImg}
-                alt="ReactLogo"
-              />
-              <div className={styles.techUse}>
-                For UI Library
-              </div>
-            </li>
-            <li className={styles.techListItem}>
-              <img
-                src="/assets/next.png"
-                className={styles.techImg}
-                alt="NextLogo"
-              />
-              <div className={styles.techUse}>
-                used as Framework
-              </div>
-            </li>
-            <li className={styles.techListItem}>
-              <img
-                src="/assets/typescript.png"
-                className={styles.techImg}
-                alt="TSLogo"
-              />
-              <div className={styles.techUse}>
-                used as Language
-              </div>
-            </li>
-            <li className={styles.techListItem}>
-              <img
-                src="/assets/sass.png"
-                className={styles.techImg}
-                alt="SassLogo"
-              />
-              <div className={styles.techUse}>
-                used as CSS Preprocessor
-              </div>
-            </li>
-
-            <li className={styles.techListItem}>
-              <img
-                src="/assets/firebase.png"
-                className={styles.techImg}
-                alt="FIREBASELogo"
-              />
-              <div className={styles.techUse}>
-                used as Database
-              </div>
-            </li>
-            <li className={styles.techListItem}>
-              <img
-                src="/assets/github.png"
-                className={styles.techImg}
-                alt="GITHUBLogo"
-              />
-              <div className={styles.techUse}>
-                used for VC and RM
-              </div>
-            </li>
-            <li className={styles.techListItem}>
-              <img
-                src="/assets/vercel.png"
-                className={styles.techImg}
-                alt="VercelLogo"
-              />
-              <div className={styles.techUse}>
-                used for Deployment
-              </div>
-            </li>
-          </ul>
-        </div>
+        <TechList inputFocused={inputFocused} />
 
         {loading ? (
           <Loader />
@@ -187,29 +108,31 @@ const Home: React.FC<IHomeProps> = ({ topRestaurants }) => {
               ""
             )}
             {inputFocused ? (
-              <>
-                {data.length !== 0 ? (
-                  <CardList data={data} />
-                ) : (
-                  <h1 className={styles.msgNoData}>
-                    Sorry No Restaurant Found in our small
-                    database of 10 restaurants . But we are
-                    scaling it up Do come back later
-                  </h1>
-                )}
-              </>
+              searchTerm === "" ? (
+                <CardList data={top4Restaurants} />
+              ) : (
+                <>
+                  {data.length !== 0 ? (
+                    <CardList data={data} />
+                  ) : (
+                    <h1 className={styles.msgNoData}>
+                      Sorry No Restaurant Found in our small
+                      database of 10 restaurants . But we
+                      are scaling it up Do come back later
+                    </h1>
+                  )}
+                </>
+              )
             ) : (
               ""
-            )}{" "}
+            )}
           </>
         )}
       </main>
     </div>
   );
 };
-export const getStaticProps: GetStaticProps = async (
-  context
-) => {
+export const getStaticProps: GetStaticProps = async () => {
   const collectionRef = db.collection("restaurants");
   const topRestaurants: IDataRestaurant[] = [];
   await collectionRef

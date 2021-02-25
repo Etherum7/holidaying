@@ -10,55 +10,50 @@ interface ISearchProps {
   inputFocused: (focusState: boolean) => void;
   handleLoadingState: (loadingState: boolean) => void;
   handleSearchTerm: (searchTerm: string) => void;
+  top4Restaurants: IDataRestaurant[];
 }
 const Search = ({
   handleSearchData,
   inputFocused,
   handleLoadingState,
   handleSearchTerm,
+  top4Restaurants,
 }: ISearchProps) => {
   const [inputValue, setInputValue] = useState("");
   const inputRef = useRef(null);
+  let cancelToken;
   const handleChange = async (searchTerm: string) => {
     handleSearchTerm(searchTerm);
 
-    handleLoadingState(true);
     if (searchTerm === "") {
-      const db = firebase.firestore();
-      const collectionRef = db.collection("restaurants");
-      const topRestaurants: IDataRestaurant[] = [];
-      await collectionRef
-        .orderBy("rating", "desc")
-        .limit(4)
-        .get()
-        .then((querySnapshot) => {
-          querySnapshot.forEach(
-            (
-              doc: firebase.firestore.QueryDocumentSnapshot<IDataRestaurant>
-            ) => topRestaurants.push(doc.data())
-          );
-        })
-        .catch((err) => {
-          throw new Error(err);
-        });
-      handleLoadingState(false);
-      //as we name it under data
-      handleSearchData(topRestaurants);
+      handleSearchData(top4Restaurants);
       return;
     }
-    const res = await axios.get(
-      `/api/restaurants?searchTerm=${searchTerm}`
-    );
+    handleLoadingState(true);
+    if (typeof cancelToken != typeof undefined) {
+      cancelToken.cancel(
+        "Operation canceled due to new request."
+      );
+    }
+    cancelToken = axios.CancelToken.source();
+    try {
+      const res = await axios.get(
+        `/api/restaurants?searchTerm=${searchTerm}`,
+        { cancelToken: cancelToken.token }
+      );
 
-    handleLoadingState(false);
-    //as we name it under data
-    handleSearchData(res.data.data);
+      handleLoadingState(false);
+      //as we name it under data
+      handleSearchData(res.data.data);
+    } catch (err) {
+      throw new Error(err);
+    }
   };
 
   return (
     <div
       className={`${styles.searchContainer} ${styles.animated} ${styles.bounceInUp}`}>
-      <label htmlFor="search" style={{ display: 'none' }}>
+      <label htmlFor="search" style={{ display: "none" }}>
         search all restaurants
       </label>
       <input
